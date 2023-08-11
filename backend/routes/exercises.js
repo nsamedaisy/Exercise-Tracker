@@ -8,13 +8,13 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/add", function (req, res, next) {
-  const username = req.body.username;
+  const userId = req.body.userId;
   const description = req.body.description;
   const duration = Number(req.body.duration);
   const date = Date(req.body.date);
 
   const newExercise = new Exercise({
-    username,
+    userId,
     description,
     duration,
     date,
@@ -40,7 +40,7 @@ router.delete("/:id", function (req, res) {
 
 router.post("/update/:id", function (req, res) {
   Exercise.findById(req.params.id).then((exercise) => {
-    exercise.username = req.body.username;
+    exercise.userId = req.body.userId;
     exercise.description = req.body.description;
     exercise.duration = Number(req.body.duration);
     exercise.date = Date.parse(req.body.date);
